@@ -4,6 +4,8 @@ import App from './App.vue'
 import { router } from './router'
 import { initAuth } from '../shared/api/supabase/auth'
 
+console.log('main')
+
 async function bootstrap() {
   await initAuth()
 
