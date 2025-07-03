@@ -1,8 +1,8 @@
 import { createApp } from 'vue'
 import '../shared/config/style.css'
-import App from './App.vue'
-import { router } from './router'
-import { initAuth } from '../shared/api/supabase/auth'
+import App from './app/App.vue'
+import { router } from './app/router'
+import { initAuth } from './shared/api/supabase/auth'
 
 console.log('main')
 
