@@ -1,6 +1,7 @@
 import { supabase } from "./client";
 
 export async function initAuth() {
+  // @ts-ignore
   const initData = window.Telegram?.WebApp?.initData
   
   if (!initData) return
