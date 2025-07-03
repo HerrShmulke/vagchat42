@@ -1,8 +1,17 @@
 import { supabase } from "./client";
 
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp: {
+        initData: string;
+      };
+    };
+  }
+}
+
 export async function initAuth() {
-  // @ts-ignore
-  const initData = window.Telegram?.WebApp?.initData
+  const initData = window.Telegram?.WebApp.initData
   
   if (!initData) return
 
