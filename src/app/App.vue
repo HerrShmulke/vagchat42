@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { initAuth } from '../shared/api/supabase/auth';
 
 const isInitialized = ref(false);
