@@ -12,7 +12,7 @@ declare global {
 
 export async function initAuth() {
   const initData = window.Telegram?.WebApp.initData
-  
+  console.log(initData)
   if (!initData) return
 
   const response = await supabase.functions.invoke('telegram-auth', {
