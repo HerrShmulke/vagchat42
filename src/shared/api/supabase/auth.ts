@@ -16,7 +16,7 @@ export async function initAuth() {
   if (!initData) return
 
   const response = await supabase.functions.invoke('telegram-auth', {
-    body: { initData }
+    body: JSON.stringify({ initData })
   })
 
   await supabase.auth.setSession({
