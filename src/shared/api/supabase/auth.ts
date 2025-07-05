@@ -19,6 +19,7 @@ export async function initAuth() {
     body: {
       initData
     },
+    method: 'POST',
   }).then(response => response.data)
 
   await supabase.auth.setSession({
