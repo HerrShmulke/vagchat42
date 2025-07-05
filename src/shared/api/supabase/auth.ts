@@ -22,5 +22,5 @@ export async function initAuth() {
     method: 'POST',
   }).then(response => response.data)
 
-  recreateSupabase(telegramAuthResponse.access_token)
+  recreateSupabase(telegramAuthResponse.token)
 }
