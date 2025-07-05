@@ -16,9 +16,14 @@ export async function initAuth() {
   console.log(initData)
   if (!initData) return
 
-  const telegramAuthResponse = await axios.post<{ access_token: string }>('https://brwimbrxcamndpaezwtf.supabase.co/functions/v1/telegram-auth', {
-    initData,
-  }).then((response) => response.data)
+  const telegramAuthResponse = await supabase.functions.invoke('telegram-auth', {
+    body: JSON.stringify({
+      initData
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }).then(response => response.data)
 
   await supabase.auth.setSession({
     access_token: telegramAuthResponse.access_token,
