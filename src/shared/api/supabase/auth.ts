@@ -22,10 +22,10 @@ export async function initAuth() {
     method: 'POST',
   }).then(response => response.data)
 
-  localStorage.setItem('sb-access-token', telegramAuthResponse.access_token)
-  localStorage.setItem('sb-refresh-token', '')
-
-  const { data, error } = await supabase.auth.refreshSession()
+  const { data, error } = await supabase.auth.setSession({
+    access_token: telegramAuthResponse.access_token,
+    refresh_token: 'empty',
+  })
 
   console.log(data, error)
 
@@ -34,6 +34,6 @@ export async function initAuth() {
     return
   }
 
- 
+  supabase.setToken(telegramAuthResponse.access_token)
 
 }
