@@ -1,4 +1,4 @@
-import { SupabaseClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -10,4 +10,17 @@ class CustomSupabaseClient extends SupabaseClient {
   }
 }
 
-export const supabase = new CustomSupabaseClient(supabaseUrl, supabaseAnonKey)
+let supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+function recreateSupabase(token: string) {
+  supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    global: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  })
+}
+
+export { supabase, recreateSupabase }
+

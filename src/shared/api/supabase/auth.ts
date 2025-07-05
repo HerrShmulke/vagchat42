@@ -1,4 +1,4 @@
-import { supabase } from "./client";
+import { supabase, recreateSupabase } from "./client";
 
 declare global {
   interface Window {
@@ -22,18 +22,5 @@ export async function initAuth() {
     method: 'POST',
   }).then(response => response.data)
 
-  const { data, error } = await supabase.auth.setSession({
-    access_token: telegramAuthResponse.access_token,
-    refresh_token: 'empty',
-  })
-
-  console.log(data, error)
-
-  if (error) {
-    console.error('Failed to set session:', error)
-    return
-  }
-
-  supabase.setToken(telegramAuthResponse.access_token)
-
+  recreateSupabase(telegramAuthResponse.access_token)
 }
