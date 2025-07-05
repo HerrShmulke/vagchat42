@@ -5,8 +5,11 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
 let supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-function recreateSupabase(token: string) {
+function recreateSupabase(token: string) {  
   supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      storageKey: 'recreate-supabase',
+    },
     global: {
       headers: {
         Authorization: `Bearer ${token}`,
